@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Statusboard</title>
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
 </head>
 <body>
   <script id="nav-tpl" type="text/html">
@@ -10,15 +14,15 @@
       <input type="text" id="statusboard-search" placeholder="Search&hellip;" />
       <a href="#" id="statusboard-search-clear">&times;</a>
     </div>
-    <h1 class="navigation-header"><a href="#" data-filter="{{goal_filter}}">Goals</a></h1>
-    <ul id="goal-navigation" class="navigation">
+    <h3 class="navigation-header"><a href="#" data-filter="{{goal_filter}}">Goals</a></h1>
+    <ul id="goal-navigation" class="nav nav-pills nav-stacked">
       {{#goal_categories}}
       <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
       {{/goal_categories}}
     </ul>
 
-    <h1 class="navigation-header"><a href="#" data-filter="{{tool_filter}}">Tools</a></h1>
-    <ul id="tool-navigation" class="navigation">
+    <h3 class="navigation-header"><a href="#" data-filter="{{tool_filter}}">Tools</a></h1>
+    <ul id="tool-navigation" class="nav nav-pills nav-stacked">
       {{#tool_categories}}
       <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
       {{/tool_categories}}
@@ -26,9 +30,9 @@
   </script>
 
   <script id="statusboard-list-tpl" type="text/html">
-    <ul id="statusboard-list">
+    <ul id="statusboard-list" class="unstyled">
       {{#statusboardItems}}
-      <li id="{{rowNumber}}" class="statusboard-item{{#type}} {{type}}{{/type}}" data-category="{{category}} {{type}}">
+      <li id="{{rowNumber}}" class="well statusboard-item{{#type}} {{type}}{{/type}}" data-category="{{category}} {{type}}">
         {{#category}}<p class="item-category"><span class="tools-icon"></span>{{category}}</p>{{/category}}
         <h3 class="item-title">{{title}}</h3>
         {{#description}}<p class="item-description">{{description}}</p>{{/description}}
@@ -73,18 +77,23 @@
     </ul>
   </script>
 
-  <h1>Statusboard</h1>
+  <div class="container">
 
-  <div id="statusboard" class="">
-    <div id="statusboard-navigation-container"></div>
-    <div id="statusboard-list-container"></div>
-  </div>
+    <h1>Statusboard</h1>
 
+    <div id="statusboard" class="row">
+      <div id="statusboard-navigation-container" class="span4"></div>
+      <div id="statusboard-list-container" class="span8"></div>
+    </div>
+
+  </div><!-- and .container-->
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/ICanHaz.js/0.10/ICanHaz.min.js"></script>
   <script src="lib/tabletop.js"></script>
   <script src="js/statusboard.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
