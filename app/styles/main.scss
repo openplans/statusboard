@@ -1,2 +1,37 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
+body {
+  background: #eee;
+}
+
+.nav > li > a:link, .nav > li > a:visited {
+  background-color: #fff;
+}
+.nav > li.is-selected > a,
+.navigation-header.is-selected a {
+  color: #fff;
+  background: #0088cc;
+  text-shadow: none;
+  border-color: #0061cc;
+}
+.nav > li > a:hover, .nav > li > a:focus,
+.nav > li.is-selected > a:hover, .nav > li.is-selected > a:focus,
+.navigation-header.is-selected a:hover, .navigation-header.is-selected a:focus {
+  background-color: #005580;
+  color: #fff;
+}
+
+.item-category {
+  position: relative;
+  top: -9px;
+  right: -9px;
+}
+.item-title {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+.updated {
+  margin-bottom: 0;
+  font-size: 85%;
+}

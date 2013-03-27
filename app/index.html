@@ -18,18 +18,18 @@
   </head>
   <body>
     <script id="nav-tpl" type="text/html">
-      <div id="statusboard-search-container">
-        <input type="text" id="statusboard-search" placeholder="Search&hellip;" />
-        <a href="#" id="statusboard-search-clear">&times;</a>
+      <div id="statusboard-search-container" class="clearfix">
+        <input type="text" id="statusboard-search" placeholder="Search&hellip;" class="search-query pull-left" />
+        <a href="#" id="statusboard-search-clear" class="close">&times;</a>
       </div>
-      <h3 class="navigation-header"><a href="#" data-filter="{{goal_filter}}">Goals</a></h1>
+      <h4 class="navigation-header"><a href="#" data-filter="{{goal_filter}}" class="btn btn-large btn-block">Goals</a></h4>
       <ul id="goal-navigation" class="nav nav-pills nav-stacked">
         {{#goal_categories}}
         <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
         {{/goal_categories}}
       </ul>
 
-      <h3 class="navigation-header"><a href="#" data-filter="{{tool_filter}}">Tools</a></h1>
+      <h4 class="navigation-header"><a href="#" data-filter="{{tool_filter}}" class="btn btn-large btn-block">Tools</a></h4>
       <ul id="tool-navigation" class="nav nav-pills nav-stacked">
         {{#tool_categories}}
         <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
@@ -40,43 +40,43 @@
     <script id="statusboard-list-tpl" type="text/html">
       <ul id="statusboard-list" class="unstyled">
         {{#statusboardItems}}
-        <li id="{{rowNumber}}" class="well statusboard-item{{#type}} {{type}}{{/type}}" data-category="{{category}} {{type}}">
-          {{#category}}<p class="item-category"><span class="tools-icon"></span>{{category}}</p>{{/category}}
+        <li id="{{rowNumber}}" class="well clearfix statusboard-item{{#type}} {{type}}{{/type}}" data-category="{{category}} {{type}}">
+          {{#category}}<p class="item-category label pull-right"><span class="tools-icon"></span>{{category}}</p>{{/category}}
           <h3 class="item-title">{{title}}</h3>
           {{#description}}<p class="item-description">{{description}}</p>{{/description}}
           {{#target}}<p class="item-target"><strong>Target:</strong> {{target}}</p>{{/target}}
 
           {{#overallstatus}}<p class="item-status overallstatus"><strong>Status:</strong> {{overallstatus}}</p>{{/overallstatus}}
-          {{#overallprogress}}<div class="progress"><div class="bar" style="width: {{overallprogress}};"></div></div>{{/overallprogress}}
+          {{#overallprogress}}<div class="progress progress-success"><div class="bar" style="width: {{overallprogress}};"></div></div>{{/overallprogress}}
 
           {{#status2013}}<p class="item-status status2013"><strong>2013:</strong> {{status2013}}</p>{{/status2013}}
-          {{#progress2013}}<div class="progress"><div class="bar" style="width: {{progress2013}};"></div></div>{{/progress2013}}
+          {{#progress2013}}<div class="progress progress-success"><div class="bar" style="width: {{progress2013}};"></div></div>{{/progress2013}}
 
           {{#status2014}}<p class="item-status status2014"><strong>2014:</strong> {{status2014}}</p>{{/status2014}}
-          {{#progress2014}}<div class="progress"><div class="bar" style="width: {{progress2014}};"></div></div>{{/progress2014}}
+          {{#progress2014}}<div class="progress progress-success"><div class="bar" style="width: {{progress2014}};"></div></div>{{/progress2014}}
 
           {{#status2015}}<p class="item-status status2015"><strong>2015:</strong> {{status2015}}</p>{{/status2015}}
-          {{#progress2015}}<div class="progress"><div class="bar" style="width: {{progress2015}};"></div></div>{{/progress2015}}
+          {{#progress2015}}<div class="progress progress-success"><div class="bar" style="width: {{progress2015}};"></div></div>{{/progress2015}}
 
           {{#status2016}}<p class="item-status status2016"><strong>2016:</strong> {{status2016}}</p>{{/status2016}}
-          {{#progress2016}}<div class="progress"><div class="bar" style="width: {{progress2016}};"></div></div>{{/progress2016}}
+          {{#progress2016}}<div class="progress progress-success"><div class="bar" style="width: {{progress2016}};"></div></div>{{/progress2016}}
 
           {{#status2017}}<p class="item-status status2017"><strong>2017:</strong> {{status2017}}</p>{{/status2017}}
-          {{#progress2017}}<div class="progress"><div class="bar" style="width: {{progress2017}};"></div></div>{{/progress2017}}
+          {{#progress2017}}<div class="progress progress-success"><div class="bar" style="width: {{progress2017}};"></div></div>{{/progress2017}}
 
           {{#status2018}}<p class="item-status status2018"><strong>2018:</strong> {{status2018}}</p>{{/status2018}}
-          {{#progress2018}}<div class="progress"><div class="bar" style="width: {{progress2018}};"></div></div>{{/progress2018}}
+          {{#progress2018}}<div class="progress progress-success"><div class="bar" style="width: {{progress2018}};"></div></div>{{/progress2018}}
 
           {{#status2019}}<p class="item-status status2019"><strong>2019:</strong> {{status2019}}</p>{{/status2019}}
-          {{#progress2019}}<div class="progress"><div class="bar" style="width: {{progress2019}};"></div></div>{{/progress2019}}
+          {{#progress2019}}<div class="progress progress-success"><div class="bar" style="width: {{progress2019}};"></div></div>{{/progress2019}}
 
           {{#status2020}}<p class="item-status status2020"><strong>2020:</strong> {{status2020}}</p>{{/status2020}}
-          {{#progress2020}}<div class="progress"><div class="bar" style="width: {{progress2020}};"></div></div>{{/progress2020}}
+          {{#progress2020}}<div class="progress progress-success"><div class="bar" style="width: {{progress2020}};"></div></div>{{/progress2020}}
 
           {{#status2021}}<p class="item-status status2021"><strong>2021:</strong> {{status2021}}</p>{{/status2021}}
-          {{#progress2021}}<div class="progress"><div class="bar" style="width: {{progress2021}};"></div></div>{{/progress2021}}
+          {{#progress2021}}<div class="progress progress-success"><div class="bar" style="width: {{progress2021}};"></div></div>{{/progress2021}}
 
-          {{#lastupdated}}<p class="updated">Updated {{lastupdated}}</p>{{/lastupdated}}
+          {{#lastupdated}}<p class="updated muted pull-right">Updated {{lastupdated}}</p>{{/lastupdated}}
         </li>
         {{/statusboardItems}}
         <li id="no-search-results">
