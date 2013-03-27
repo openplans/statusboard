@@ -1,0 +1,7 @@
+(function(S) {
+  'use strict';
+
+  S.config = {
+    url: 'ADD YOUR GOOGLE SPREADSHEET URL HERE'
+  };
+}(window.Statusboard = window.Statusboard || {}));

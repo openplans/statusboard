@@ -1,132 +1,131 @@
 /*global jQuery _ Tabletop ich */
 
-window.Statusboard = window.Statusboard || {};
-
-(function(S, T, $, _) {
+(function(S, $) {
   'use strict';
 
-  $.expr[':'].icontains = function(a, i, m) {  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; };
+  S.init = function(options) {
+    var _options = _.extend({}, options);
 
-  var _url = 'SET ME IN A CONFIG FILE, or options',
-      _$navContainer = $('#statusboard-navigation-container'),
-      _$statusboardListContainer = $('#statusboard-list-container'),
-      _goalFilter = 'outcome',
-      _actionFilter = 'action',
-      _toolFilter = 'tool',
-      _multipleCategoryDelim = '|',
-      _$textSearch,
-      _categoryFilter,
-      _textFilter;
+    $.expr[':'].icontains = function(a, i, m) {  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; };
 
-  function filter() {
-    var $noResultsMessage = $('#no-search-results'),
-        multiCats,
-        catSelector,
-        i;
+    var _$navContainer = $('#statusboard-navigation-container'),
+        _$statusboardListContainer = $('#statusboard-list-container'),
+        _goalFilter = 'outcome',
+        _actionFilter = 'action',
+        _toolFilter = 'tool',
+        _multipleCategoryDelim = '|',
+        _$textSearch,
+        _categoryFilter,
+        _textFilter;
 
-    if (_categoryFilter) {
-      _$statusboardListContainer.find('li').hide();
+    function filter() {
+      var $noResultsMessage = $('#no-search-results'),
+          multiCats,
+          catSelector,
+          i;
 
-      if (_categoryFilter.indexOf(_multipleCategoryDelim) >= 0) {
-        multiCats = _categoryFilter.split(_multipleCategoryDelim);
+      if (_categoryFilter) {
+        _$statusboardListContainer.find('li').hide();
 
-        for (i=0; i<multiCats.length; i++) {
-          multiCats[i] = 'li[data-category*="'+multiCats[i]+'"]';
-        }
+        if (_categoryFilter.indexOf(_multipleCategoryDelim) >= 0) {
+          multiCats = _categoryFilter.split(_multipleCategoryDelim);
 
-        catSelector = multiCats.join(',');
-      } else {
-        catSelector = 'li[data-category*="'+_categoryFilter+'"]';
-      }
+          for (i=0; i<multiCats.length; i++) {
+            multiCats[i] = 'li[data-category*="'+multiCats[i]+'"]';
+          }
 
-      _$statusboardListContainer.find(catSelector).show();
-    } else {
-      _$statusboardListContainer.find('li').show();
-    }
-
-    if (_textFilter) {
-      _$statusboardListContainer.find('li:not(:icontains("'+_textFilter+'"))').hide();
-    }
-
-    if (_$statusboardListContainer.find('.statusboard-item').is(':visible')) {
-      $noResultsMessage.css('visibility', 'hidden');
-    } else {
-      $noResultsMessage.css('visibility', 'visible');
-    }
-  }
-
-  function bindCategoryClick() {
-    var $categoryItems = _$navContainer.find('a:not(#statusboard-search-clear)').parent();
-    $categoryItems.click(function(evt) {
-      evt.preventDefault();
-      var $this = $(this);
-
-      $categoryItems.removeClass('is-selected');
-      $this.addClass('is-selected');
-
-      _categoryFilter = $this.find('a').attr('data-filter');
-
-      _$textSearch.val('');
-      _textFilter = '';
-      filter();
-    });
-  }
-
-  function bindTextSearchChange() {
-    _$textSearch.keyup(function() {
-      var val = $(this).val();
-      if (val !== _textFilter) {
-        if (val === '') {
-          _categoryFilter = _goalFilter + _multipleCategoryDelim + _actionFilter;
-          $('.navigation-header:first').addClass('is-selected');
+          catSelector = multiCats.join(',');
         } else {
-          _categoryFilter = '';
-          $('.is-selected').removeClass('is-selected');
+          catSelector = 'li[data-category*="'+_categoryFilter+'"]';
         }
 
-        _textFilter =  $(this).val();
-        filter();
+        _$statusboardListContainer.find(catSelector).show();
+      } else {
+        _$statusboardListContainer.find('li').show();
       }
-    });
 
-    $('#statusboard-search-clear').click(function() {
-      _$textSearch.val('');
-      _textFilter = '';
-      filter();
-    });
-  }
+      if (_textFilter) {
+        _$statusboardListContainer.find('li:not(:icontains("'+_textFilter+'"))').hide();
+      }
 
-  function init(data) {
-    var $statusboardList = ich['statusboard-list-tpl']({statusboardItems: data}),
-        goalData = _.filter(data, function(obj) { return obj.type === _goalFilter; }),
-        toolData = _.filter(data, function(obj) { return obj.type === _toolFilter; }),
-        goalCategories = _.uniq(_.pluck(goalData, 'category')),
-        toolCategories = _.uniq(_.pluck(toolData, 'category')),
-        $categoryList = ich['nav-tpl']({
-          goal_filter: _goalFilter + _multipleCategoryDelim + _actionFilter,
-          goal_categories: goalCategories,
-          tool_categories: toolCategories,
-          tool_filter: _toolFilter
-        });
+      if (_$statusboardListContainer.find('.statusboard-item').is(':visible')) {
+        $noResultsMessage.css('visibility', 'hidden');
+      } else {
+        $noResultsMessage.css('visibility', 'visible');
+      }
+    }
 
-    _$navContainer.html($categoryList);
-    _$statusboardListContainer.html($statusboardList);
+    function bindCategoryClick() {
+      var $categoryItems = _$navContainer.find('a:not(#statusboard-search-clear)').parent();
+      $categoryItems.click(function(evt) {
+        evt.preventDefault();
+        var $this = $(this);
 
-    _$textSearch = $('#statusboard-search');
+        $categoryItems.removeClass('is-selected');
+        $this.addClass('is-selected');
 
-    bindCategoryClick();
-    bindTextSearchChange();
+        _categoryFilter = $this.find('a').attr('data-filter');
 
-    // Autofocus to the category filter that is selected
-    $('.navigation-header:first').click();
-  }
+        _$textSearch.val('');
+        _textFilter = '';
+        filter();
+      });
+    }
 
-  $(function() {
-    T.init({
-      key: _url,
+    function bindTextSearchChange() {
+      _$textSearch.keyup(function() {
+        var val = $(this).val();
+        if (val !== _textFilter) {
+          if (val === '') {
+            _categoryFilter = _goalFilter + _multipleCategoryDelim + _actionFilter;
+            $('.navigation-header:first').addClass('is-selected');
+          } else {
+            _categoryFilter = '';
+            $('.is-selected').removeClass('is-selected');
+          }
+
+          _textFilter =  $(this).val();
+          filter();
+        }
+      });
+
+      $('#statusboard-search-clear').click(function() {
+        _$textSearch.val('');
+        _textFilter = '';
+        filter();
+      });
+    }
+
+    function init(data) {
+      var $statusboardList = ich['statusboard-list-tpl']({statusboardItems: data}),
+          goalData = _.filter(data, function(obj) { return obj.type === _goalFilter; }),
+          toolData = _.filter(data, function(obj) { return obj.type === _toolFilter; }),
+          goalCategories = _.uniq(_.pluck(goalData, 'category')),
+          toolCategories = _.uniq(_.pluck(toolData, 'category')),
+          $categoryList = ich['nav-tpl']({
+            goal_filter: _goalFilter + _multipleCategoryDelim + _actionFilter,
+            goal_categories: goalCategories,
+            tool_categories: toolCategories,
+            tool_filter: _toolFilter
+          });
+
+      _$navContainer.html($categoryList);
+      _$statusboardListContainer.html($statusboardList);
+
+      _$textSearch = $('#statusboard-search');
+
+      bindCategoryClick();
+      bindTextSearchChange();
+
+      // Autofocus to the category filter that is selected
+      $('.navigation-header:first').click();
+    }
+
+    // Go!
+    new Tabletop({
+      key: _options.url,
       callback: init,
       simpleSheet: true
     });
-  });
-
-}(window.Statusboard, Tabletop, jQuery, _));
+  };
+}(window.Statusboard = window.Statusboard || {}, jQuery ));

@@ -114,10 +114,12 @@
     <!-- Not yet available in bower -->
     <script src="scripts/vendor/icanhaz.js"></script>
     <script src="scripts/vendor/tabletop.js"></script>
+
     <script src="scripts/statusboard.js"></script>
+    <script src="scripts/config.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/plugins.js -->
+    <!-- build:js scripts/bootstrap-plugins.js -->
     <script src="components/sass-bootstrap/js/bootstrap-affix.js"></script>
     <script src="components/sass-bootstrap/js/bootstrap-alert.js"></script>
     <script src="components/sass-bootstrap/js/bootstrap-dropdown.js"></script>
@@ -132,5 +134,14 @@
     <script src="components/sass-bootstrap/js/bootstrap-collapse.js"></script>
     <script src="components/sass-bootstrap/js/bootstrap-tab.js"></script>
     <!-- endbuild -->
+
+    <script>
+      jQuery(function(){
+        Statusboard.init({
+          url: Statusboard.config.url
+        })
+      });
+
+    </script>
 </body>
 </html>

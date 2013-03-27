@@ -154,16 +154,17 @@ module.exports = function (grunt) {
         /*concat: {
             dist: {}
         },*/
-        
-        uglify: {
-            dist: {
-                files: {
-                    '<%= yeoman.dist %>/scripts/main.js': [
-                        '<%= yeoman.app %>/scripts/{,*/}*.js'
-                    ],
-                }
-            }
-        },
+
+        // Using build tags in index.html
+        // uglify: {
+        //     dist: {
+        //         files: {
+        //             '<%= yeoman.dist %>/scripts/main.js': [
+        //                 '<%= yeoman.app %>/scripts/{,*/}*.js'
+        //             ],
+        //         }
+        //     }
+        // },
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
