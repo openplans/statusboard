@@ -1,6 +1,10 @@
+/*global jQuery _ Tabletop ich */
+
 window.Statusboard = window.Statusboard || {};
 
-(function(S, $, _) {
+(function(S, T, $, _) {
+  'use strict';
+
   $.expr[':'].icontains = function(a, i, m) {  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; };
 
   var _url = 'SET ME IN A CONFIG FILE, or options',
@@ -69,7 +73,7 @@ window.Statusboard = window.Statusboard || {};
   }
 
   function bindTextSearchChange() {
-    _$textSearch.keyup(function(evt) {
+    _$textSearch.keyup(function() {
       var val = $(this).val();
       if (val !== _textFilter) {
         if (val === '') {
@@ -85,17 +89,17 @@ window.Statusboard = window.Statusboard || {};
       }
     });
 
-    $('#statusboard-search-clear').click(function(evt) {
+    $('#statusboard-search-clear').click(function() {
       _$textSearch.val('');
       _textFilter = '';
       filter();
     });
   }
 
-  function init(data, tabletop) {
+  function init(data) {
     var $statusboardList = ich['statusboard-list-tpl']({statusboardItems: data}),
-        goalData = _.filter(data, function(obj) { return obj.type === _goalFilter; });
-        toolData = _.filter(data, function(obj) { return obj.type === _toolFilter; });
+        goalData = _.filter(data, function(obj) { return obj.type === _goalFilter; }),
+        toolData = _.filter(data, function(obj) { return obj.type === _toolFilter; }),
         goalCategories = _.uniq(_.pluck(goalData, 'category')),
         toolCategories = _.uniq(_.pluck(toolData, 'category')),
         $categoryList = ich['nav-tpl']({
@@ -118,11 +122,11 @@ window.Statusboard = window.Statusboard || {};
   }
 
   $(function() {
-    Tabletop.init({
+    T.init({
       key: _url,
       callback: init,
       simpleSheet: true
     });
   });
 
-})(Statusboard, jQuery, _);
+}(window.Statusboard, Tabletop, jQuery, _));
