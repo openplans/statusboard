@@ -3,21 +3,56 @@
 
 body {
   background: #eee;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 800;
+}
+
+.site-header {
+  border-bottom: 1px solid rgba(255,255,255,0.75);
+  margin: 0 0 1.5em 0;
+  padding: 1.5em 0 0;
+  box-shadow: inset 0 -1px rgba(0,0,0,0.1);
+}
+.site-title {
+  margin: 0;
+}
+.site-description {
+  font-size: 1.75em;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 0.75em;
+}
+
+#statusboard-navigation-container {
+  margin-bottom: 2em;
+}
+
+#statusboard-list-container {}
+
+.navigation-header a {
+  font-size: 85%;
+  font-weight: normal;
+}
+.navigation-header.is-selected a {
+  display: none;
 }
 
 .nav > li > a:link, .nav > li > a:visited {
   background-color: #fff;
 }
-.nav > li.is-selected > a,
-.navigation-header.is-selected a {
+.nav > li.is-selected > a {
   color: #fff;
   background: #0088cc;
   text-shadow: none;
   border-color: #0061cc;
 }
 .nav > li > a:hover, .nav > li > a:focus,
-.nav > li.is-selected > a:hover, .nav > li.is-selected > a:focus,
-.navigation-header.is-selected a:hover, .navigation-header.is-selected a:focus {
+.nav > li.is-selected > a:hover, .nav > li.is-selected > a:focus {
   background-color: #005580;
   color: #fff;
 }
@@ -35,4 +70,37 @@ body {
 .updated {
   margin-bottom: 0;
   font-size: 85%;
+}
+
+.nobreak {
+  white-space: nowrap;
+}
+
+
+#no-search-results {
+  display: block !important;
+  visibility: hidden;
+  color: #cc0000;
+  font-size: 1.25em;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+#statusboard-search-container {
+  position: relative;
+}
+#statusboard-search {
+  width: 100%;
+  padding: 15px 28px 15px 12px;
+  -webkit-box-sizing:border-box;
+     -moz-box-sizing:border-box;
+          box-sizing:border-box;
+}
+#statusboard-search-clear {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  line-height: 1.5em;
+  margin-top: -0.75em;
+  padding: 0 12px 0 0;
 }

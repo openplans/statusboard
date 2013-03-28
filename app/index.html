@@ -15,26 +15,23 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+
+    <!-- Google WebFonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,800,300' rel='stylesheet' type='text/css'>
+        
   </head>
   <body>
     <script id="nav-tpl" type="text/html">
-      <div id="statusboard-search-container" class="clearfix">
-        <input type="text" id="statusboard-search" placeholder="Search&hellip;" class="search-query pull-left" />
-        <a href="#" id="statusboard-search-clear" class="close">&times;</a>
-      </div>
-      <h4 class="navigation-header"><a href="#" data-filter="{{goal_filter}}" class="btn btn-large btn-block">Goals</a></h4>
-      <ul id="goal-navigation" class="nav nav-pills nav-stacked">
-        {{#goal_categories}}
-        <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
-        {{/goal_categories}}
-      </ul>
-
-      <h4 class="navigation-header"><a href="#" data-filter="{{tool_filter}}" class="btn btn-large btn-block">Tools</a></h4>
+      <h4 class="navigation-header">Projects <a href="#" data-filter="{{tool_filter}}" class="pull-right">(See All)</a></h4>
       <ul id="tool-navigation" class="nav nav-pills nav-stacked">
         {{#tool_categories}}
         <li><a href="#" data-filter="{{.}}"><strong>{{.}}</strong></a></li>
         {{/tool_categories}}
       </ul>
+      <div id="statusboard-search-container" class="clearfix">
+        <input type="text" id="statusboard-search" placeholder="Search&hellip;" class="search-query pull-left" />
+        <a href="#" id="statusboard-search-clear" class="close">&times;</a>
+      </div>
     </script>
 
     <script id="statusboard-list-tpl" type="text/html">
@@ -79,15 +76,18 @@
           {{#lastupdated}}<p class="updated muted pull-right">Updated {{lastupdated}}</p>{{/lastupdated}}
         </li>
         {{/statusboardItems}}
-        <li id="no-search-results">
-          <h3>Sorry. No results were found that match your search criteria. Please clear your search or try again.</h3>
+        <li id="no-search-results" class="well">
+          <p>Sorry. No results were found that match your search criteria. Please clear your search or try again.</p>
         </li>
       </ul>
     </script>
 
     <div class="container">
 
-      <h1>Statusboard</h1>
+      <header class="site-header">
+        <h1 class="site-title">Statusboard</h1>
+        <h2 class="site-description">Tracking Progress on the <span class="nobreak">Pedestrian Plan</span></h2>
+      </header>
 
       <div id="statusboard" class="row">
         <div id="statusboard-navigation-container" class="span4"></div>
