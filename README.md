@@ -3,7 +3,7 @@
 Statusboard is a simple dashboard for tracking progress on planning projects. Check out [this simple demo](http://openplans.github.com/statusboard/).
 
 ## Features
-* pulls data from a Google spreadsheet
+* pulls data from a Google spreadsheet (see an example [here](https://docs.google.com/spreadsheet/pub?key=0AnydufBqqojSdG9nWEpuVmoxYWRISm00MVhsWm5jMmc&output=html))
 * present overall and year-by-year progress on targets
 * categorize issues by topic
 * responsive layout (works on small screens)
